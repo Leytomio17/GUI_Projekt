@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="GUI_Projekt.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI_Projekt"
+             mc:Ignorable="d" 
+             d:DesignHeight="525" d:DesignWidth="800" Background="White" Loaded="UserControl_Loaded">
+    <!--<UserControl.Resources>
+        <local:M120DataSet x:Key="m120DataSet"/>
+        <CollectionViewSource x:Key="kundeViewSource" Source="{Binding Kunde, Source={StaticResource m120DataSet}}"/>
+        <CollectionViewSource x:Key="landViewSource" Source="{Binding Land, Source={StaticResource m120DataSet}}"/>
+    </UserControl.Resources>-->
+    <Grid>
+        <!--DataContext="{StaticResource kundeViewSource}"-->
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50px">
+                </RowDefinition>
+                <RowDefinition Height="1*">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <WrapPanel Background="Gray">
+                <Button Content="Speichern" Margin="10,15" Click="Save_Click"/>
+                <Button Content="Abbrechen" Margin="0,15" Click="Cancel_Click"/>
+            </WrapPanel>
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Anrede" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,40,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Vorname" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,77,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,114,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Name Zusatz" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,152,0,0" Grid.Row="1" TextWrapping="Wrap" Text="PLZ" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,192,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ort" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,231,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Land" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,270,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Telefon" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,310,0,0" TextWrapping="Wrap" Text="Mobile" VerticalAlignment="Top" Grid.Row="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,350,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Grid.Row="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,390,0,0" TextWrapping="Wrap" Text="Geburtsdatum" VerticalAlignment="Top" Grid.Row="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,433,0,0" TextWrapping="Wrap" Text="Pass Nr." VerticalAlignment="Top" Grid.Row="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="167,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <!--<ComboBox HorizontalAlignment="Stretch" Height="23" Margin="106,5,5,0" Grid.Row="1" Text="" VerticalAlignment="Top" x:Name="Anrede" DisplayMemberPath="Anrede" ItemsSource="{Binding}"/>
+-->
+            <TextBox HorizontalAlignment="Stretch" Height="23" Margin="106,37,5,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Vorname, Mode=TwoWay}" VerticalAlignment="Top"/>
+            <TextBox Name="Name" HorizontalAlignment="Stretch" Height="23" Margin="106,70,5,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Name, Mode=TwoWay}">
+            </TextBox>
+            <TextBlock HorizontalAlignment="Stretch" Height="17" Margin="106,168,5,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=PLZ}"/>
+            <TextBox HorizontalAlignment="Stretch" Height="23" Margin="106,107,5,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding NameZustatz, Mode=TwoWay}"/>
+            <TextBlock HorizontalAlignment="Stretch" Height="17" Margin="106,286,5,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=Telefon}"/>
+            <TextBox HorizontalAlignment="Stretch" Height="23" Margin="106,145,5,0" Grid.Row="1" TextWrapping="Wrap" Name="PLZ" VerticalAlignment="Top">
+                <Binding Path="PLZ"
+                         Mode="TwoWay"
+                         UpdateSourceTrigger="PropertyChanged"
+                         ValidatesOnNotifyDataErrors="True"
+                         ValidatesOnDataErrors="True"
+                         NotifyOnValidationError="True"
+                        >
+                    <Binding.ValidationRules>
+                        <local:CommonValidator ValidatesOnTargetUpdated="True" MinLength="4" MaxLength="4" Required="True" FieldName="PLZ"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <TextBox HorizontalAlignment="Stretch" Height="23" Margin="106,185,5,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Ort, Mode=TwoWay}"/>
+            <TextBox HorizontalAlignment="Stretch" Height="22" Margin="106,264,5,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Telefon, Mode=TwoWay}"/>
+            <TextBox HorizontalAlignment="Stretch" Height="23" Margin="106,303,5,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Mobile, Mode=TwoWay}"/>
+            <TextBlock HorizontalAlignment="Stretch" Height="17" Margin="106,326,5,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=Mobile}"/>
+            <TextBox  HorizontalAlignment="Stretch" Height="23" Margin="106,343,5,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top">
+                <Binding Path="Email"
+                         Mode="TwoWay"
+                         UpdateSourceTrigger="PropertyChanged"
+                         ValidatesOnNotifyDataErrors="True"
+                         ValidatesOnDataErrors="True"
+                         NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:EMailValidator ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <TextBlock HorizontalAlignment="Stretch" Height="17" Margin="106,365,5,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=Email}"/>
+            <TextBox HorizontalAlignment="Stretch" Height="23" Margin="106,423,5,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Text="{Binding PassNr, Mode=TwoWay}"/>
+            <TextBlock HorizontalAlignment="Stretch" Height="17" Margin="106,446,5,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=PassNr}"/>
+            <!-- ItemsSource="{Binding Source={StaticResource landViewSource}}" -->
+            <ComboBox HorizontalAlignment="Stretch" Margin="106,225,5,0" Grid.Row="1" VerticalAlignment="Top" DisplayMemberPath="Name" />
+            <DatePicker HorizontalAlignment="Stretch" Margin="106,382,5,0" Grid.Row="1" VerticalAlignment="Top" SelectedDate="{Binding Geburtsdatum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+        </Grid>
+    </Grid>
+</UserControl>
